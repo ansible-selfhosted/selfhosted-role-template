@@ -1,0 +1,29 @@
+[envs.test]
+detached = true
+dependencies = [
+  "ansible==10.4.0",
+  "molecule==24.9.0",
+  "molecule-plugins[podman]==23.5.3",
+  ]
+
+[envs.test.scripts]
+test = "molecule test {args}"
+create = "molecule create {args}"
+converge = "molecule conversge {args}"
+verify = "molecule verify {args}"
+destroy = "molecule destroy {args}"
+
+[[envs.test.matrix]]
+python = ["3.10"] #, "3.11", "3.12"]
+
+[envs.lint]
+detached = true
+dependencies = [
+  "ansible-lint==24.9.2",
+  "yamllint==1.34.0"
+  ]
+
+[envs.lint.scripts]
+check = ["ansible-lint {args}", "yamllint -s {args}"]
+
+

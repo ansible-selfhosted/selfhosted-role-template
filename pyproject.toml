@@ -1,0 +1,209 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "PinP-Role-Template"
+version = "0.1.0"
+description = "An ansible role template with Podman-in-Podman molecule testing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = ["copier", "development", "ansible", "template"]
+authors = [{ name = "SpeakinTelnet", email = "mail@speakintel.net" }]
+maintainers = [{ name = "SpeakinTelnet", email = "mail@speakintel.net" }]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+]
+dependencies = ["copier >= 8.3.0"]
+
+[project.urls]
+homepage = "https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git"
+repository = "https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git"
+
+[project.optional-dependencies]
+test = ["pytest >= 7.0"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.envs.test]
+features = ["test"]
+
+[tool.hatch.envs.test.scripts]
+test = "python -m pytest -vv {args}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = ["black>=23.9.0", "ruff>=0.0.292"]
+
+[tool.hatch.envs.lint.scripts]
+style = ["ruff check {args:tests}", "black --check --diff {args:tests}"]
+fmt = ["black {args:tests}", "ruff check --fix {args:tests}"]
+
+[tool.black]
+line-length = 90
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+]
+
+# Same as Black.
+line-length = 90
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+  "S101",
+  "PLR0913",
+  "PLR0915",
+  "PGH003",
+  "ANN001",
+  "ANN202",
+  "ANN201",
+  "PLR0912",
+  "TRY301",
+  "PLW0603",
+  "PLR2004",
+  "ANN101",
+  "S106",
+  "TRY201",
+  "ANN003",
+  "ANN002",
+  "S105",
+  "TRY003",
+  "D103",
+]
+"docs/conf.py" = ["I001", "E402"]
+"tests/**/__init__.py" = ["D104"]
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+order-by-type = true
+
+[tool.ruff.lint]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = [
+  "E",
+  "W",
+  "F",
+  "I",
+  "N",
+  "B",
+  "BLE",
+  "C",
+  "D",
+  "E",
+  "F",
+  "I",
+  "N",
+  "S",
+  "T",
+  "W",
+  "RUF",
+  "NPY",
+  "PD",
+  "PGH",
+  "ANN",
+  "C90",
+  "PL",
+  "PLC",
+  "PLE",
+  "PLW",
+  "TCH",]
+
+unfixable = []
+
+typing-modules = [
+  "typing",
+  "types",
+  "typing_extensions",
+  "mypy",
+  "mypy_extensions",
+]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+# "UP" "TRY" "PLR"
+select = [
+  "E",
+  "W",
+  "F",
+  "I",
+  "N",
+  "B",
+  "BLE",
+  "C",
+  "D",
+  "E",
+  "F",
+  "I",
+  "N",
+  "S",
+  "T",
+  "W",
+  "RUF",
+  "NPY",
+  "PD",
+  "PGH",
+  "ANN",
+  "C90",
+  "PLC",
+  "PLE",
+  "PLW",
+  "TCH",
+]
+ignore = [
+  "ANN002",
+  "ANN003",
+  "ANN101",
+  "ANN102",
+  "ANN204",
+  "ANN401",
+  "S101",
+  "S104",
+  "D105",
+  "D106",
+  "D107",
+  "D200",
+  "D203",
+  "D212",
+  "D415",
+  "PD011",
+  "PLW1510",
+]
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+filterwarnings = ["ignore::DeprecationWarning:pydantic_core.*:"]
+
+
+

@@ -1,0 +1,72 @@
+# Podman-in-Podman Role Template
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Hatch project](https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg)](https://github.com/pypa/hatch)
+[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border.json)](https://github.com/copier-org/copier)
+
+A template to generate ansible roles with Podman in Podman testing using molecule.
+
+Usage
+-----
+
+Prerequisite
+************
+
+You will need ``Copier`` to use this template, it is recommended to install it using `pipx <https://pypa.github.io/pipx/installation/>`_.
+
+.. code-block:: console
+    
+    pipx install copier
+
+Basic Usage
+***********
+
+Start by generating a blank project
+
+.. code-block:: console
+
+    copier copy https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git /path/to/project
+
+or 
+
+.. code-block:: console
+
+    copier copy gh:SpeakinTelnet/PinP-Role-Template /path/to/project
+
+
+then you can change directory to your ``/path/to/project`` and initiate your project as
+you'd normally do
+
+.. code-block:: console
+    
+    cd /path/to/project
+    git init
+    git add .
+    git commit -m "Initial commit"
+
+
+Testing
+-------
+
+since this project is built around Hatch you will first need it
+
+.. code-block:: console
+
+    pipx install hatch
+
+
+Then you can run tests using:
+
+.. code-block:: console
+
+    hatch run test:test
+    hatch run lint:style
+
+
+License
+-------
+
+This project is licensed under the `MIT License <https://codeberg.org/SpeakinTelnet/PinP-Role-Template/src/branch/main/LICENSE>`_
+
+
+⊂(▀¯▀⊂)

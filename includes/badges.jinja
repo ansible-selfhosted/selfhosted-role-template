@@ -1,0 +1,37 @@
+{% macro licenses(license_name) -%}
+    {% if license_name == "MIT" %}
+        [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+    {% elif license_name == "Apachev2" %}
+        [![License](https://img.shields.io/badge/License-Apache_2.0-yellowgreen.svg)](LICENSE)
+    {% elif license_name == "BSD" %}
+        [![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](LICENSE)
+    {% elif license_name == "ISC" %}
+        [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
+    {% elif license_name == "GNUv3" %}
+        [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+    {% elif license_name == "GNULesserv3" %}
+        [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](LICENSE)
+    {% else %}
+        [![License](https://badgen.net/badge/License/**TBD**/red)](LICENSE)
+    {% endif %}
+{%- endmacro %}
+
+{% macro copier() -%}
+[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border.json)](https://github.com/copier-org/copier)
+{%- endmacro %}
+
+{% macro podman() -%}
+[![Podman Badge](https://img.shields.io/badge/Podman-892CA0?logo=podman&logoColor=white)](https://podman.io/)
+{%- endmacro %}
+
+{% macro hatch() -%}
+[![Hatch project](https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg)](https://github.com/pypa/hatch)
+{%- endmacro %}
+
+{% macro cicd() -%}
+[![CI](https://github.com/{{ author_name }}/{{ _folder_name }}/workflows/CI/badge.svg)](https://github.com/copier-org/copier/actions?query=branch%3Amaster)
+{%- endmacro %}
+
+{% macro ansible() -%}
+[![Ansible](https://img.shields.io/badge/Ansible-Molecule-EE0000?style=plastic&logo=ansible&logoColor=white)](https://github.com/ansible/molecule)
+{%- endmacro %}

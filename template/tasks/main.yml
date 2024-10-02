@@ -1,0 +1,14 @@
+---
+- name: Ensure Podman is installed
+  ansible.builtin.package:
+    name: podman
+    state: present
+
+- name: Run a simple web server container
+  containers.podman.podman_container:
+    name: my_webserver
+    image: docker.io/library/nginx:latest
+    state: started
+    restart_policy: unless-stopped
+    published_ports:
+      - "8080:80"
