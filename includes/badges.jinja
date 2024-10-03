@@ -29,7 +29,7 @@
 {%- endmacro %}
 
 {% macro cicd() -%}
-[![CI](https://github.com/{{ author_name }}/{{ _folder_name }}/workflows/CI/badge.svg)](https://github.com/copier-org/copier/actions?query=branch%3Amaster)
+[![CI]({{ repository_url }}/workflows/CI/badge.svg)](https://github.com/copier-org/copier/actions?query=branch%3Amaster)
 {%- endmacro %}
 
 {% macro ansible() -%}

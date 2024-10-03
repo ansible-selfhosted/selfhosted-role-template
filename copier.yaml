@@ -67,7 +67,23 @@ short_description:
   help: 'Brief description for the role:'
   type: str
 
+repository_host:
+  default: "github.com"
+  help: "The host of the repository (default: GitHub)"
+  type: str
+  choices:
+    github.com:
+      value: github.com
+    gitlab.com:
+      value: gitlab.com
+    bitbucket.org:
+      value: bitbucket.org
+    codeberg.org:
+      value: codeberg.org
+    other:
+      value: other
+
 repository_url:
   type: str
-  default: "https://github.com/{{ author_name }}/{{% if collection_name != '' -%}}{{collection_name}}.{{%- endif %}}{{ role_name }}"
-  help: "The URL of the repository (default: GitHub) (e.g. https://github.com/username/collection-name.role-name)"
+  default: "{% if repository_host != 'other' -%}https://{{ repository_host }} {%- else -%} <CHANGE_ME> {%- endif -%}/{{ author_name }}/{% if collection_name != '' -%}{{collection_name}}.{%- endif %}{{ role_name }}"
+  help: "The URL of the repository (e.g. https://github.com/username/collection-name.role-name)"
