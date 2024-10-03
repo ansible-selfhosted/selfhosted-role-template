@@ -23,7 +23,6 @@ author_email:
 role_name:
   help: 'Name of the role:'
   type: str
-  default: "{{ _folder_name }}"
   validator: >-
         {% if not role_name %}
         This field cannot be empty as it will be used in content of the generated files.

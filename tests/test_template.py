@@ -26,6 +26,7 @@ def test_fully_templated(tmp_path: Path, base_answers: dict[str, str | bool], he
         dst_path,
         [
             dst_path / ".gitea",
+            dst_path / "molecule",
         ],
     )
 

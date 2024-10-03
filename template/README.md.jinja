@@ -8,7 +8,7 @@
 {{ badges.ansible() }}
 
 
-# {{ _folder_name }}
+# {% if collection_name != '' -%}{{collection_name}}.{%- endif %}{{ role_name }}
 
 
 {{ short_description }}

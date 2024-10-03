@@ -4,4 +4,4 @@
   tasks:
     - name: Include Role
       ansible.builtin.include_role:
-        name: "{{ _folder_name }}"
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
