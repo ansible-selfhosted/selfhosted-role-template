@@ -14,7 +14,7 @@ verify = "molecule verify {args}"
 destroy = "molecule destroy {args}"
 
 [[envs.test.matrix]]
-python = ["3.10"] #, "3.11", "3.12"]
+python = ["3.10", "3.11", "3.12"]
 
 [envs.lint]
 detached = true
