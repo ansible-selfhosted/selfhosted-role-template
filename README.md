@@ -6,65 +6,58 @@
 
 A template to generate ansible roles with Podman in Podman testing using molecule.
 
-Usage
------
+## Usage
 
-Prerequisite
-************
+### Prerequisite
 
 You will need ``Copier`` to use this template, it is recommended to install it using `pipx <https://pypa.github.io/pipx/installation/>`_.
 
-.. code-block:: console
-    
-    pipx install copier
+``` shell
+pipx install copier
+```
 
-Basic Usage
-***********
+### Basic Usage
 
 Start by generating a blank project
 
-.. code-block:: console
-
-    copier copy https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git /path/to/project
+``` shell
+copier copy https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git /path/to/project
+```
 
 or 
 
-.. code-block:: console
-
-    copier copy gh:SpeakinTelnet/PinP-Role-Template /path/to/project
-
+``` shell
+copier copy gh:SpeakinTelnet/PinP-Role-Template /path/to/project
+```
 
 then you can change directory to your ``/path/to/project`` and initiate your project as
 you'd normally do
 
-.. code-block:: console
-    
-    cd /path/to/project
-    git init
-    git add .
-    git commit -m "Initial commit"
+``` shell
+cd /path/to/project
+git init
+git add .
+git commit -m "Initial commit"
+```
 
-
-Testing
--------
+### Testing
 
 since this project is built around Hatch you will first need it
 
-.. code-block:: console
-
-    pipx install hatch
+``` shell
+pipx install hatch
+```
 
 
 Then you can run tests using:
 
-.. code-block:: console
 
-    hatch run test:test
-    hatch run lint:style
+``` shell
+hatch run test:test
+hatch run lint:style
+```
 
-
-License
--------
+### License
 
 This project is licensed under the `MIT License <https://codeberg.org/SpeakinTelnet/PinP-Role-Template/src/branch/main/LICENSE>`_
 
