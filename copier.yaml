@@ -33,8 +33,14 @@ role_name:
         {% endif %}
 
 collection_name:
-  help: '(Optional) Name of the collection:'
+  default: ''
+  help: '(Optional) Collection of the Role:'
   type: str
+
+namespace_name:
+  help: '(Optional) Namespace of the role:'
+  type: str
+  when: collection_name != ''
 
 license:
   type: str
