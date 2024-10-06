@@ -56,10 +56,13 @@ def base_answers():
     return {
         "author_name": "SpeakinTelnet",
         "author_email": "SpeakinTelnet@example.com",
+        "author_company": "",
         "role_name": "rolename",
         "collection_name": "collectionname",
+        "namespace_name": "namespacename",
         "license": "MIT",
         "copyright_holder": "SpeakinTelnet",
         "short_description": "Template test description",
+        "repository_host": "codeberg.org",
         "repository_url": "https://www.codeberg.org/SpeakinTelnet/python-test",
     }
