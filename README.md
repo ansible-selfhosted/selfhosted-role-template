@@ -59,7 +59,7 @@ hatch run lint:style
 
 ### License
 
-This project is licensed under the `MIT License <https://codeberg.org/SpeakinTelnet/PinP-Role-Template/src/branch/main/LICENSE>`_
+This project is licensed under the [MIT License](LICENSE)
 
 
 ⊂(▀¯▀⊂)
