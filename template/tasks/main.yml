@@ -1,14 +1,22 @@
 ---
-- name: Ensure Podman is installed
-  ansible.builtin.package:
-    name: podman
+- name: "{{ ansible_user_id }} | Get user info"
+  ansible.builtin.user:
+    user: "{{ ansible_user_id }}"
     state: present
+  register: user_info
 
-- name: Run a simple web server container
-  containers.podman.podman_container:
-    name: my_webserver
-    image: docker.io/library/nginx:latest
+- name: Put container related files on the host
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0640"
+  loop:
+    - {"src": "httpd.container.j2", "dest": "{{ user_info.home }}/.config/containers/systemd/httpd.container"}
+
+- name: start the container service
+  ansible.builtin.systemd:
+    name: httpd
     state: started
-    restart_policy: unless-stopped
-    published_ports:
-      - "8080:80"
+    scope: user
+    enabled: true
+    daemon_reload: true

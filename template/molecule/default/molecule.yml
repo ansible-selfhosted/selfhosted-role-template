@@ -4,11 +4,16 @@ driver:
   name: podman
 platforms:
   - name: instance
-    image: registry.access.redhat.com/ubi9/ubi-init:latest
-    command: ""
+    image: selfhosted-pinp-container:latest
     privileged: true
-    pre_build_image: true
+    pre_build_image: false
+    dockerfile: CONTAINERFILE
+    systemd: true
 provisioner:
   name: ansible
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: podman
 verifier:
   name: ansible

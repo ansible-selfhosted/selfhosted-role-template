@@ -17,4 +17,4 @@
     - name: Check if the web server is up
       ansible.builtin.assert:
         that:
-          - "'Welcome to nginx!' in web_content.content"
+          - "'It works!' in web_content.content"

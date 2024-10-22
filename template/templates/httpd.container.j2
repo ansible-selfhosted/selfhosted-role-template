@@ -1,0 +1,13 @@
+[Unit]
+Description=httpd container service
+
+[Container]
+ContainerName=my-apache-app
+Image=docker.io/bitnami/apache:2.4
+PublishPort={{ published_port }}:80
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
