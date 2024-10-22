@@ -9,7 +9,7 @@ dependencies = [
 [envs.test.scripts]
 test = "molecule test {args}"
 create = "molecule create {args}"
-converge = "molecule conversge {args}"
+converge = "molecule converge {args}"
 verify = "molecule verify {args}"
 destroy = "molecule destroy {args}"
 
