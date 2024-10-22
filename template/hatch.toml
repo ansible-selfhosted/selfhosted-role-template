@@ -1,4 +1,5 @@
 [envs.test]
+python = "3.12"
 detached = true
 dependencies = [
   "ansible==10.4.0",
@@ -12,9 +13,6 @@ create = "molecule create {args}"
 converge = "molecule converge {args}"
 verify = "molecule verify {args}"
 destroy = "molecule destroy {args}"
-
-[[envs.test.matrix]]
-python = ["3.10", "3.11", "3.12"]
 
 [envs.lint]
 detached = true
