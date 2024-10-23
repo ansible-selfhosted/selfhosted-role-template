@@ -18,7 +18,7 @@ def test_fully_templated(tmp_path: Path, base_answers: dict[str, str | bool], he
         dst_path=dst_path,
         data=base_answers,
         defaults=True,
-        vcs_ref='HEAD',
+        vcs_ref="HEAD",
         unsafe=True,
     )
     assert worker is not None
