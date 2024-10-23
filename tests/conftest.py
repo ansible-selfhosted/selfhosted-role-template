@@ -28,6 +28,8 @@ class Helpers:
                 file_content = p.read_text()
             except UnicodeDecodeError:  # catch for non text files (i.e: .png, .jpg)
                 continue
+            if '# skip jinja testing' in file_content:
+                continue
             for symbols in ["{%", "%}", "{{", "}}"]:
                 assert symbols not in file_content
 

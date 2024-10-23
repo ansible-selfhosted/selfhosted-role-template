@@ -1,4 +1,5 @@
 ---
+# skip jinja testing
 - name: "{{ ansible_user_id }} | Get user info"
   ansible.builtin.user:
     user: "{{ ansible_user_id }}"
