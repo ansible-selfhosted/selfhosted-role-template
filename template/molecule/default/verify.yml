@@ -11,7 +11,7 @@
     - name: Verify that the web server is serving content
       ansible.builtin.uri:
         url: http://localhost:8080
-        return_content: yes
+        return_content: true
       register: web_content
 
     - name: Check if the web server is up

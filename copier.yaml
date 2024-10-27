@@ -9,15 +9,17 @@ author_name:
   type: str
   validator: >-
         {% if not author_name %}
-        This field cannot be empty as it will be used in content of the generated files.
+        This field cannot be empty as it will be used
+        in content of the generated files.
         {% endif %}
 
-author_email: 
+author_email:
   help: 'Email of the author:'
   type: str
   validator: >-
         {% if not author_email %}
-        This field cannot be empty as it will be used in content of the generated files.
+        This field cannot be empty as it will be used
+        in content of the generated files.
         {% endif %}
 
 author_company:
@@ -29,7 +31,8 @@ role_name:
   type: str
   validator: >-
         {% if not role_name %}
-        This field cannot be empty as it will be used in content of the generated files.
+        This field cannot be empty as it will be used
+        in content of the generated files.
         {% endif %}
 
 collection_name:
@@ -68,7 +71,8 @@ copyright_holder:
   help: "Who is the copyright holder (default: full name)?"
   validator: >-
         {% if not copyright_holder %}
-        This field cannot be empty as it will be used in content of the generated files.
+        This field cannot be empty as it will be used
+        in content of the generated files.
         {% endif %}
 
 short_description:
@@ -94,5 +98,7 @@ repository_host:
 
 repository_url:
   type: str
+  # yamllint disable-line rule:line-length
   default: "{% if repository_host != 'other' -%}https://{{ repository_host }} {%- else -%} <CHANGE_ME> {%- endif -%}/{{ author_name }}/{% if collection_name != '' -%}{{collection_name}}.{%- endif %}{{ role_name }}"
+  # yamllint disable-line rule:line-length
   help: "The URL of the repository (e.g. https://github.com/username/collection-name.role-name)"
