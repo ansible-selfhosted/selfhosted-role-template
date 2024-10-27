@@ -1,0 +1,62 @@
+---
+name: CI
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  ansible-lint:
+    name: Ansible lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pip3 install hatch
+
+      - name: Test with molecule
+        run: hatch run lint:ansible
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+
+  yaml-lint:
+    name: Yaml lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pip3 install hatch
+
+      - name: Test with molecule
+        run: hatch run lint:yaml
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+
+  build:
+    name: Molecule Tests
+    runs-on: ubuntu-latest
+    container:
+      image: "quay.io/speakintelnet/pinp-molecule"
+      options: "--security-opt label=disabled --security-opt seccomp=unconfined --privileged"
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pip3 install hatch
+
+      - name: Test with molecule
+        run: hatch run test:test
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"

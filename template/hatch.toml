@@ -22,6 +22,6 @@ dependencies = [
   ]
 
 [envs.lint.scripts]
-check = ["ansible-lint {args}", "yamllint -s {args}"]
-
-
+yaml = "yamllint -s tasks/ molecule/ meta/"
+ansible = "ansible-lint --exclude molecule/ --exclude meta"
+all = ["yaml", "ansible"]
