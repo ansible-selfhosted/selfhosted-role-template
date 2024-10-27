@@ -1,0 +1,87 @@
+---
+name: Test Template
+
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: test-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: "1"
+  FORCE_COLOR: "1"
+
+jobs:
+  Template-test:
+    name: Template testing
+    runs-on: ubuntu-latest
+    container:
+      image: "quay.io/speakintelnet/pinp-molecule"
+      options: "
+        --security-opt label=disabled
+        --security-opt seccomp=unconfined
+        --privileged
+        "
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo dnf install -y git
+          pip3 install --upgrade copier==9.3.1 hatch==1.13.0
+      - name: Copy template
+        run: >
+          copier copy -f --trust -r HEAD . ../new_template \
+            -d namespace_name="namespace" \
+            -d author_name="authorname" \
+            -d author_email="email@example.com" \
+            -d author_company="" \
+            -d role_name="rolename" \
+            -d collection_name="collectionname" \
+            -d license="MIT" \
+            -d copyright_holder="authorname" \
+            -d short_description="Short description" \
+            -d repository_host="codeberg.org" \
+            -d repository_url="https://www.github.com/company/repository"
+      - name: Run tests
+        working-directory: ../new_template
+        run: hatch run test:test
+
+  Template-lint:
+    name: Template linting
+    runs-on: ubuntu-latest
+    container:
+      image: "quay.io/speakintelnet/pinp-molecule"
+      options: "
+        --security-opt label=disabled
+        --security-opt seccomp=unconfined
+        --privileged
+        "
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo dnf install -y git
+          pip3 install --upgrade copier==9.3.1 hatch==1.13.0
+      - name: Copy template
+        run: >
+          copier copy -f --trust -r HEAD . ../new_template \
+            -d namespace_name="namespace" \
+            -d author_name="authorname" \
+            -d author_email="email@example.com" \
+            -d author_company="" \
+            -d role_name="rolename" \
+            -d collection_name="collectionname" \
+            -d license="MIT" \
+            -d copyright_holder="authorname" \
+            -d short_description="Short description" \
+            -d repository_host="codeberg.org" \
+            -d repository_url="https://www.github.com/company/repository"
+      - name: run lints
+        working-directory: ../new_template
+        run: hatch run lint:all
