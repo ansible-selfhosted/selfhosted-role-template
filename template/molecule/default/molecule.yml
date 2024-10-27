@@ -4,10 +4,9 @@ driver:
   name: podman
 platforms:
   - name: instance
-    image: selfhosted-pinp-container:latest
+    image: "quay.io/speakintelnet/pinp-molecule"
     privileged: true
-    pre_build_image: false
-    dockerfile: CONTAINERFILE
+    pre_build_image: true
     systemd: true
 provisioner:
   name: ansible
