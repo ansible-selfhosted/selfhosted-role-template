@@ -35,13 +35,11 @@ allow-direct-references = true
 source = "vcs"
 
 [tool.hatch.envs.test]
+python = "3.12"
 features = ["test"]
 
 [tool.hatch.envs.test.scripts]
 test = "python -m pytest -vv {args}"
-
-[[tool.hatch.envs.test.matrix]]
-python = ["3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.lint]
 detached = true
