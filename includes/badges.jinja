@@ -1,19 +1,19 @@
 {% macro licenses(license_name) -%}
-    {% if license_name == "MIT" %}
+    {% if license_name == "MIT" -%}
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-    {% elif license_name == "Apachev2" %}
+    {%- elif license_name == "Apachev2" -%}
 [![License](https://img.shields.io/badge/License-Apache_2.0-yellowgreen.svg)](LICENSE)
-    {% elif license_name == "BSD" %}
+    {%- elif license_name == "BSD" -%}
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](LICENSE)
-    {% elif license_name == "ISC" %}
+    {%- elif license_name == "ISC" -%}
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
-    {% elif license_name == "GNUv3" %}
+    {%- elif license_name == "GNUv3" -%}
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
-    {% elif license_name == "GNULesserv3" %}
+    {%- elif license_name == "GNULesserv3" -%}
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](LICENSE)
-    {% else %}
+    {%- else -%}
 [![License](https://badgen.net/badge/License/**TBD**/red)](LICENSE)
-    {% endif %}
+    {%- endif -%}
 {%- endmacro %}
 
 {% macro copier() -%}
