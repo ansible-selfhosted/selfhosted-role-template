@@ -25,3 +25,10 @@ dependencies = [
 yaml = "yamllint -s tasks/ molecule/ meta/"
 ansible = "ansible-lint --exclude molecule/ --exclude meta"
 all = ["yaml", "ansible"]
+
+[envs.docs]
+detached = true
+dependencies = ["aar-doc==2.0.0"]
+
+[envs.docs.scripts]
+generate = "aar-doc . markdown"
