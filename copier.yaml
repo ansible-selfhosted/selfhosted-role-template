@@ -1,49 +1,59 @@
 ---
-
 _subdirectory: template
 _min_copier_version: "9.3.1"
 
 
 author_name:
-  help: 'Name of the author:'
+  help: "Name of the author:"
   type: str
   validator: >-
-        {% if not author_name %}
-        This field cannot be empty as it will be used
-        in content of the generated files.
-        {% endif %}
+    {% if not author_name %}
+      This field cannot be empty as it will be used
+      in content of the generated files.
+    {% endif %}
 
 author_email:
-  help: 'Email of the author:'
+  help: "Email of the author:"
   type: str
   validator: >-
-        {% if not author_email %}
-        This field cannot be empty as it will be used
-        in content of the generated files.
-        {% endif %}
+    {% if not author_email %}
+      This field cannot be empty as it will be used
+      in content of the generated files.
+    {% endif %}
 
 author_company:
-  help: '(Optional) Company of the author:'
+  help: "(Optional) Company of the author:"
   type: str
 
 role_name:
-  help: 'Name of the role:'
+  help: "Name of the role:"
   type: str
   validator: >-
-        {% if not role_name %}
-        This field cannot be empty as it will be used
-        in content of the generated files.
-        {% endif %}
+    {% if not role_name %}
+      This field cannot be empty as it will be used
+      in content of the generated files.
+    {% endif %}
+    {% if not (role_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+      Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
+    {% endif %}
 
 collection_name:
-  default: ''
-  help: '(Optional) Collection of the Role:'
+  default: ""
+  help: "(Optional) Collection of the Role:"
   type: str
+  validator: >-
+    {% if not (collection_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+      Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
+    {% endif %}
 
 namespace_name:
-  help: '(Optional) Namespace of the role:'
+  help: "(Optional) Namespace of the role:"
   type: str
   when: collection_name != ''
+  validator: >-
+    {% if not (namespace_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+      Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
+    {% endif %}
 
 license:
   type: str
@@ -70,14 +80,14 @@ copyright_holder:
   default: "{{ author_name }}"
   help: "Who is the copyright holder (default: full name)?"
   validator: >-
-        {% if not copyright_holder %}
-        This field cannot be empty as it will be used
-        in content of the generated files.
-        {% endif %}
+    {% if not copyright_holder %}
+      This field cannot be empty as it will be used
+      in content of the generated files.
+    {% endif %}
 
 short_description:
-  default: 'A simple role'
-  help: 'Brief description for the role:'
+  default: "A simple role"
+  help: "Brief description for the role:"
   type: str
 
 repository_host:
