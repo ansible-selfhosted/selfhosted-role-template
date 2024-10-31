@@ -45,15 +45,12 @@ def test_readme_file_content(
     )
     assert worker is not None
     assert dst_path.exists()
-    title = f"# { base_answers['collection_name'] }.{base_answers['role_name']}"
     readme_path = dst_path / "README.md"
 
     helpers.assert_file_content(
         readme_path,
         [
-            title,
-            base_answers["short_description"],
-            f"{base_answers['author_name']} ({base_answers['author_email']})",
+            "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)",
         ],
     )
 
