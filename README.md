@@ -21,13 +21,13 @@ pipx install copier
 Start by generating a blank project
 
 ``` shell
-copier copy https://codeberg.org/SpeakinTelnet/PinP-Role-Template.git /path/to/project
+copier copy https://github.com/ansible-selfhosted/selfhosted-role-template.git /path/to/project
 ```
 
 or 
 
 ``` shell
-copier copy gh:SpeakinTelnet/PinP-Role-Template /path/to/project
+copier copy gh:ansible-selfhosted/selfhosted-role-template /path/to/project
 ```
 
 then you can change directory to your ``/path/to/project`` and initiate your project as
