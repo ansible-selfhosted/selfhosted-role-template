@@ -22,18 +22,17 @@ jobs:
     name: Template testing
     runs-on: ubuntu-latest
     container:
-      image: "quay.io/speakintelnet/pinp-molecule"
-      options: "
-        --security-opt label=disabled
-        --security-opt seccomp=unconfined
-        --privileged
-        "
+      image: catthehacker/ubuntu:act-22.04
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'    
       - name: Install dependencies
         run: |
-          sudo dnf install -y git
-          pip3 install --upgrade copier==9.3.1 hatch==1.13.0
+          apt install -y git
+          pip install -U pip
+          pip install --upgrade copier==9.3.1 hatch==1.13.0
       - name: Copy template
         run: >
           copier copy -f --trust -r HEAD . ../new_template \
@@ -50,7 +49,7 @@ jobs:
             -d repository_url="https://www.github.com/company/repository"
       - name: Run tests
         working-directory: ../new_template
-        run: hatch run test:test
+        run: hatch run test:action
 
   Template-lint:
     name: Template linting

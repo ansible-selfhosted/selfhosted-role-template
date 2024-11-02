@@ -4,11 +4,12 @@ detached = true
 dependencies = [
   "ansible==10.4.0",
   "molecule==24.9.0",
-  "molecule-plugins[podman]==23.5.3",
+  "molecule-plugins[podman, docker]==23.5.3",
 ]
 
 [envs.test.scripts]
 test = "molecule test {args}"
+action = "molecule test -s action {args}"
 create = "molecule create {args}"
 converge = "molecule converge {args}"
 verify = "molecule verify {args}"

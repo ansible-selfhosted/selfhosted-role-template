@@ -1,0 +1,20 @@
+---
+- name: Verify web server
+  hosts: all
+  tasks:
+    - name: Wait for the web server to start
+      ansible.builtin.wait_for:
+        port: 8080
+        delay: 10
+        timeout: 30
+
+    - name: Verify that the web server is serving content
+      ansible.builtin.uri:
+        url: http://localhost:8080
+        return_content: true
+      register: web_content
+
+    - name: Check if the web server is up
+      ansible.builtin.assert:
+        that:
+          - "'It works!' in web_content.content"
