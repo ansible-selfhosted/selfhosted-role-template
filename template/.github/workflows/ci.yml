@@ -33,7 +33,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip3 install hatch
+          apt install -y git
+          pip install -U pip
+          pip install hatch==1.13.0
 
       - name: Test with molecule
         run: hatch run lint:yaml
@@ -41,22 +43,23 @@ jobs:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
 
-  build:
+  test:
     name: Molecule Tests
     runs-on: ubuntu-latest
     container:
-      image: "quay.io/speakintelnet/pinp-molecule"
-      options: "--security-opt label=disabled --security-opt seccomp=unconfined --privileged"
+      image: catthehacker/ubuntu:act-22.04
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Install dependencies
         run: |
           pip3 install hatch
 
       - name: Test with molecule
-        run: hatch run test:test
+        run: hatch run test:action
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
