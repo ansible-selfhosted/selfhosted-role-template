@@ -4,6 +4,9 @@
 [![Hatch project](https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg)](https://github.com/pypa/hatch)
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border.json)](https://github.com/copier-org/copier)
 
+![](https://github.com/ansible-selfhosted/selfhosted-role-template/actions/workflows/test.yaml/badge.svg)
+![](https://github.com/ansible-selfhosted/selfhosted-role-template/actions/workflows/test-template.yaml/badge.svg)
+
 A template to generate ansible roles with Podman in Podman testing using molecule.
 
 ## Usage
