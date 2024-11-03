@@ -26,7 +26,7 @@ all = ["yaml", "ansible"]
 
 [envs.docs]
 detached = true
-dependencies = ["aar-doc==2.0.0"]
+dependencies = ["ruamel.yaml==0.18.6"]
 
 [envs.docs.scripts]
-generate = "aar-doc . markdown"
+generate = "python generate_readme.py"

@@ -58,23 +58,25 @@ role_name:
       Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
     {% endif %}
 
+related_url:
+  help: "(Optional) URL to the documentation of the deployed service:"
+  type: str
+
 collection_name:
-  default: ""
-  help: "(Optional) Collection of the Role:"
+  default: "services"
+  help: "Collection of the Role:"
   type: str
   validator: >-
     {% if not (collection_name | regex_search('^[a-z][a-z0-9_]+$')) %}
       Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
     {% endif %}
-
-namespace_name:
-  help: "(Optional) Namespace of the role:"
-  type: str
-  when: collection_name != ''
-  validator: >-
-    {% if not (namespace_name | regex_search('^[a-z][a-z0-9_]+$')) %}
-      Must only contain lowercase ASCII letters, digits, underscores, and start with a letter.
-    {% endif %}
+  choices:
+    services (all roles related to deploying the services):
+      value: services
+    addons (all roles related to deploying addons, i.e. monitoring, logging, etc.):
+      value: addons
+    helpers (all roles related to helper functions):
+      value: helpers
 
 license:
   type: str

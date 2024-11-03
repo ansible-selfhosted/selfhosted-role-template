@@ -36,12 +36,12 @@ jobs:
       - name: Copy template
         run: >
           copier copy -f --trust -r HEAD . ../new_template \
-            -d namespace_name="namespace" \
             -d author_name="authorname" \
             -d author_email="email@example.com" \
             -d author_company="" \
             -d role_name="rolename" \
-            -d collection_name="collectionname" \
+            -d related_url="example.com" \
+            -d collection_name="services" \
             -d license="MIT" \
             -d copyright_holder="authorname" \
             -d short_description="Short description" \
@@ -66,12 +66,12 @@ jobs:
       - name: Copy template
         run: >
           copier copy -f --trust -r HEAD . ../new_template \
-            -d namespace_name="namespace" \
             -d author_name="authorname" \
             -d author_email="email@example.com" \
             -d author_company="" \
             -d role_name="rolename" \
-            -d collection_name="collectionname" \
+            -d related_url="example.com" \
+            -d collection_name="services" \
             -d license="MIT" \
             -d copyright_holder="authorname" \
             -d short_description="Short description" \
@@ -96,18 +96,18 @@ jobs:
       - name: Copy template
         run: >
           copier copy -f --trust -r HEAD . ../new_template \
-            -d namespace_name="namespace" \
             -d author_name="authorname" \
             -d author_email="email@example.com" \
             -d author_company="" \
             -d role_name="rolename" \
-            -d collection_name="collectionname" \
+            -d related_url="example.com" \
+            -d collection_name="services" \
             -d license="MIT" \
             -d copyright_holder="authorname" \
             -d short_description="Short description" \
             -d repository_host="codeberg.org" \
             -d repository_url="https://www.github.com/company/repository"
-      - name: run lints
+      - name: generate readme
         working-directory: ../new_template
         run: hatch run docs:generate
       - id: set_content
@@ -116,8 +116,12 @@ jobs:
         run: |
           content=`cat README.md`
           echo readme_content=$content >> $GITHUB_ENV
-      - name: check content of readme file
-        if: contains(env.readme_content, 'Main entry point for the rolename role') != true
+      - name: check content of readme file for description
+        if: contains(env.readme_content, 'Short description') != true
+        run: |
+          exit 1
+      - name: check content of readme file for role name
+        if: contains(env.readme_content, 'rolename') != true
         run: |
           exit 1
       - name: print message if readme file is correct
