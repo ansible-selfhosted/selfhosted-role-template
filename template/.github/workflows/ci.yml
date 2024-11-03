@@ -33,7 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt install -y git
           pip install -U pip
           pip install hatch==1.13.0
 
@@ -56,7 +55,7 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: |
-          pip3 install hatch
+          pip install hatch
 
       - name: Test with molecule
         run: hatch run test:action
