@@ -3,27 +3,26 @@ _subdirectory: template
 _min_copier_version: "9.3.1"
 
 _message_after_copy: |
-    Your role "{{ role_name }}" has been created successfully!
+  Your role "{{ role_name }}" has been created successfully!
 
-    If this is not a regenerated role, here's the suggested next steps:
+  If this is not a regenerated role, here's the suggested next steps:
 
-    1. Change directory to the project root:
+  1. Change directory to the project root:
 
-       $ cd {{ _copier_conf.dst_path }}
+     $ cd {{ _copier_conf.dst_path }}
 
-    2. Initiate the base README.md file
+  2. Initiate the base README.md file
 
-       $ hatch run docs:generate
+     $ hatch run docs:generate
 
-    3. init your repository
+  3. init your repository
 
-      $ git init
-      $ git add .
-      $ git commit -m "Initial commit"
+    $ git init
+    $ git add .
+    $ git commit -m "Initial commit"
 
-    4. Code away!
+  4. Code away!
 
-    
 author_name:
   help: "Name of the author:"
   type: str
