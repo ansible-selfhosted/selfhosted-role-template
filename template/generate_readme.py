@@ -20,6 +20,7 @@ def parse_yaml(path):
 
 
 def make_text(meta, arguments, extras):
+    has_choices = any("choices" in v for v in arguments['options'].values())
     nl = "\n"  # workaround for f-string backslash limitation
     try:
         text = f"""
@@ -44,10 +45,11 @@ def make_text(meta, arguments, extras):
 
 ## Role Arguments
 
-|Option|Description|Type|Required|Default|
-|---|---|---|---|---|
+|Option|Description|Type|Required|Default|{'choices|' if has_choices else ''}
+|---|---|---|---|---|{'---|' if has_choices else ''}
 {(
-    "".join(f"|{k}|{v['description'][0]}|{v['type']}|{v['required']}|{v['default']}|{nl}" 
+    "".join(f"|{k}|{v['description'][0]}|{v['type']}|{v['required']}|{v['default']}|{
+        ("<br>".join(f"- {c}" for c in v['choices']) if 'choices' in v else '')}{nl}"
     for k, v in arguments['options'].items())
     )}
 
@@ -56,7 +58,7 @@ def make_text(meta, arguments, extras):
 ```
 - hosts: all
   tasks:
-    - name: Importing homepage role
+    - name: Importing {meta['galaxy_info']['role_name']} role
       ansible.builtin.import_role:
         name: selfhosted.{extras['collection']}.{meta['galaxy_info']['role_name']}
       vars:
