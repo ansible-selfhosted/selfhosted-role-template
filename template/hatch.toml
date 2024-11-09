@@ -9,7 +9,7 @@ dependencies = [
 
 [envs.test.scripts]
 test = "molecule test {args}"
-action = "molecule test -s action {args}"
+action = "molecule test -d docker {args}"
 create = "molecule create {args}"
 converge = "molecule converge {args}"
 verify = "molecule verify {args}"
