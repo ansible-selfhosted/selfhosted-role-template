@@ -14,6 +14,12 @@ create = "molecule create {args}"
 converge = "molecule converge {args}"
 verify = "molecule verify {args}"
 destroy = "molecule destroy {args}"
+debug = [
+  "create",
+  "converge",
+  "podman exec -ti instance sudo -u podman /usr/lib/systemd/system-generators/podman-system-generator --user --dryrun",
+  "destroy",
+]
 
 [envs.lint]
 detached = true
