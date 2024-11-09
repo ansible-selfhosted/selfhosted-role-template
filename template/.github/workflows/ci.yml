@@ -1,11 +1,10 @@
 ---
 name: CI
-"on":
+on:
   push:
     branches:
       - main
   pull_request:
-
 jobs:
   ansible-lint:
     name: Ansible lint
@@ -13,34 +12,8 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          pip3 install hatch
-
-      - name: Test with molecule
-        run: hatch run lint:ansible
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
-
-  yaml-lint:
-    name: Yaml lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          pip install -U pip
-          pip install hatch==1.13.0
-
-      - name: Test with molecule
-        run: hatch run lint:yaml
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@main
 
   test:
     name: Molecule Tests
