@@ -20,7 +20,7 @@ def parse_yaml(path):
 
 
 def make_text(meta, arguments, extras):
-    has_choices = any("choices" in v for v in arguments['options'].values())
+    has_choices = any("choices" in v for v in arguments["options"].values())
     nl = "\n"  # workaround for f-string backslash limitation
     try:
         text = f"""
@@ -48,9 +48,16 @@ def make_text(meta, arguments, extras):
 |Option|Description|Type|Required|Default|{'choices|' if has_choices else ''}
 |---|---|---|---|---|{'---|' if has_choices else ''}
 {(
-    "".join(f"|{k}|{v['description'][0]}|{v['type']}|{v['required']}|{v['default']}|{
-        ("<br>".join(f"- {c}" for c in v['choices']) if 'choices' in v else '')}{nl}"
-    for k, v in arguments['options'].items())
+    "".join((f"|{k}"
+             f"|{"<br>".join(v['description'])}|{v['type']}"
+             f"|{v['required']}"
+             f"|{v['default']}"
+             f"|{("<br>".join(
+                f"- {c}" for c in v['choices'] + "|")
+                if 'choices' in v
+                else '')}"
+             f"{nl}")
+        for k, v in arguments['options'].items())
     )}
 
 ## Example Playbook
