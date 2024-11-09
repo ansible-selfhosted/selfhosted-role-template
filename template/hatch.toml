@@ -17,12 +17,11 @@ destroy = "molecule destroy {args}"
 
 [envs.lint]
 detached = true
-dependencies = ["ansible-lint==24.9.2", "yamllint==1.34.0"]
+dependencies = ["ansible-lint==24.9.2"]
 
 [envs.lint.scripts]
-yaml = "yamllint -s tasks/ molecule/ meta/"
-ansible = "ansible-lint --exclude molecule/ --exclude meta"
-all = ["yaml", "ansible"]
+fmt = "ansible-lint --fix --exclude .copier-answers.yml"
+lint = "ansible-lint --exclude .copier-answers.yml --exclude molecule/ --exclude meta/"
 
 [envs.docs]
 detached = true

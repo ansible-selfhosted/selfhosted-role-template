@@ -79,7 +79,7 @@ jobs:
             -d repository_url="https://www.github.com/company/repository"
       - name: run lints
         working-directory: ../new_template
-        run: hatch run lint:all
+        run: hatch run lint:lint
 
   Template-readme:
     name: Generate readme file
