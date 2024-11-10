@@ -53,7 +53,7 @@ def make_text(meta, arguments, extras):
              f"|{v['required']}"
              f"|{v['default']}"
              f"|{("<br>".join(
-                f"- {c}" for c in v['choices'] + "|")
+                f"- {c}" for c in v['choices'])
                 if 'choices' in v
                 else '')}"
              f"{nl}")
