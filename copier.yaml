@@ -44,6 +44,7 @@ author_email:
 author_company:
   help: "(Optional) Company of the author:"
   type: str
+  default: ""
 
 role_name:
   help: "Name of the role:"

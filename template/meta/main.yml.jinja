@@ -3,7 +3,7 @@
 galaxy_info:
   author: {{ author_name }}
   description: {{ short_description }}
-  company: {{ author_company | default("") }}
+  company: {{ author_company }}
   role_name: {{ role_name }}
   namespace: selfhosted
 
@@ -16,7 +16,6 @@ galaxy_info:
   min_ansible_version: "2.15"
 
   platforms: []
-
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
 
