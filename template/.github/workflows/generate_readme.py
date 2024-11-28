@@ -3,10 +3,10 @@ from ruamel.yaml import YAML, YAMLError
 
 yaml = YAML()
 
-meta_path = pathlib.Path(__file__).parent / "meta" / "main.yml"
-arguments_path = pathlib.Path(__file__).parent / "meta" / "argument_specs.yml"
-extra_data_path = pathlib.Path(__file__).parent / "meta" / "extra_data.yml"
-readme_path = pathlib.Path(__file__).parent / "README.md"
+meta_path = pathlib.Path.cwd() / "meta" / "main.yml"
+arguments_path = pathlib.Path.cwd() / "meta" / "argument_specs.yml"
+extra_data_path = pathlib.Path.cwd() / "meta" / "extra_data.yml"
+readme_path = pathlib.Path.cwd() / "README.md"
 
 
 def parse_yaml(path):
@@ -52,8 +52,8 @@ def make_text(meta, arguments, extras):
              f"|{"<br>".join(v['description'])}|{v['type']}"
              f"|{v['required']}"
              f"|{v['default']}"
-             f"|{("<br>".join(
-                f"- {c}" for c in v['choices'])
+             f"|{("<ul>" + "".join(
+                f"<li>{c}</li>" for c in v['choices']) + "</ul>"
                 if 'choices' in v
                 else '')}"
              f"{nl}")

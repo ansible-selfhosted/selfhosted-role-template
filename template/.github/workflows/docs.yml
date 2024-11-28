@@ -10,14 +10,16 @@ on:
 permissions: write-all
 
 jobs:
-  rebuild-readme:
-    name: Rebuild README.md
+  rebuild-args:
+    name: Rebuild README.md and Defaults
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -26,13 +28,16 @@ jobs:
         run: |
           pip install hatch
 
-      - name: Run generation script
-        run: hatch run docs:generate
+      - name: Run readmegeneration script
+        run: hatch run docs:readme
+
+      - name: Run defaults generation script
+        run: hatch run docs:defaults
 
       - name: Commit changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add README.md
-          git commit -m "Rebuild README.md" || echo "No changes to commit"
+          git add README.md defaults/main.yml
+          git commit -m "Auto-Rebuild" || echo "No changes to commit"
           git push || echo "No changes to push"
