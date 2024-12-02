@@ -35,9 +35,21 @@ jobs:
         run: hatch run docs:defaults
 
       - name: Commit changes
+        if: ${{ ! github.event.pull_request.head.repo.fork }}
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add README.md defaults/main.yml
           git commit -m "Auto-Rebuild" || echo "No changes to commit"
           git push || echo "No changes to push"
+
+      - name: Check file needing rebuild when coming from a fork
+        if: github.event.pull_request.head.repo.fork
+        run: |
+          if ! git diff --exit-code --quiet defaults/main.yml && ! git diff --exit-code --quiet README.md; then
+          echo "::error Defaults & README files should be rebuilt, run hatch run docs:defaults && hatch run docs:readme" && exit 1
+          elif ! git diff --exit-code --quiet defaults/main.yml; then
+          echo "::error Defaults file should be rebuilt, run hatch run docs:defaults" && exit 1
+          elif ! git diff --exit-code --quiet README.md; then
+          echo "::error README file should be rebuilt, run hatch run docs:readme" && exit 1
+          fi
