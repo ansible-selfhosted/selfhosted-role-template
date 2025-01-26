@@ -21,32 +21,32 @@ jobs:
   tests:
     name: Unit testing
     runs-on: ubuntu-latest
-    container: catthehacker/ubuntu:act-latest
+    container: catthehacker/ubuntu:act-latest@sha256:89367f3c5437699c6b43fa941041725bcc77682a46f2bbe6557541e384d9cedb
 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.12
+          python-version: 3.12.7
       - name: Install Hatch
-        run: pip install --upgrade hatch
+        run: pip install --upgrade hatch==1.13.0
       - name: Run tests
         run: hatch run test:test
 
   lints:
     name: Lint check
     runs-on: ubuntu-latest
-    container: catthehacker/ubuntu:act-latest
+    container: catthehacker/ubuntu:act-latest@sha256:89367f3c5437699c6b43fa941041725bcc77682a46f2bbe6557541e384d9cedb
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.12
+          python-version: 3.12.7
 
       - name: Install Hatch
-        run: pip install --upgrade hatch
+        run: pip install --upgrade hatch==1.13.0
 
       - name: Run lint tests
         run: hatch run lint:style

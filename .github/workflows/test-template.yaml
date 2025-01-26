@@ -20,14 +20,14 @@ env:
 jobs:
   Template-test:
     name: Template testing
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
-      image: catthehacker/ubuntu:act-22.04
+      image: catthehacker/ubuntu:act-22.04@sha256:89367f3c5437699c6b43fa941041725bcc77682a46f2bbe6557541e384d9cedb
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'    
+          python-version: "3.12.7"
       - name: Install dependencies
         run: |
           apt install -y git
@@ -55,9 +55,12 @@ jobs:
     name: Template linting
     runs-on: ubuntu-latest
     container:
-      image: catthehacker/ubuntu:act-22.04
+      image: catthehacker/ubuntu:act-22.04@sha256:89367f3c5437699c6b43fa941041725bcc77682a46f2bbe6557541e384d9cedb
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.7"
       - name: Install dependencies
         run: |
           apt install -y git
@@ -85,12 +88,12 @@ jobs:
     name: Generate readme file
     runs-on: ubuntu-latest
     container:
-      image: catthehacker/ubuntu:act-22.04
+      image: catthehacker/ubuntu:act-22.04@sha256:89367f3c5437699c6b43fa941041725bcc77682a46f2bbe6557541e384d9cedb
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'    
+          python-version: "3.12.7"
       - name: Install dependencies
         run: |
           apt install -y git

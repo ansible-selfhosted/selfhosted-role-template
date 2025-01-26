@@ -132,6 +132,7 @@ repository_host:
 repository_url:
   type: str
   # yamllint disable-line rule:line-length
-  default: "{% if repository_host != 'other' -%}https://{{ repository_host }} {%- else -%} <CHANGE_ME> {%- endif -%}/{{ author_name }}/selfhosted.{{collection_name}}.{{ role_name }}"
+  default: "{% if repository_host != 'other' -%}https://{{ repository_host }} {%- else -%} <CHANGE_ME> {%- endif -%}/{{ author_name }}/selfhosted.{{collection_name}}.{{
+    role_name }}"
   # yamllint disable-line rule:line-length
   help: "The URL of the repository (e.g. https://github.com/username/mynamespace.mycollection.role-name)"
